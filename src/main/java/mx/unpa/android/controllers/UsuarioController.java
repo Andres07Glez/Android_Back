@@ -1,5 +1,6 @@
 package mx.unpa.android.controllers;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import mx.unpa.android.dtos.requests.UsuarioRequest;
 import mx.unpa.android.dtos.responses.UsuarioResponse;
@@ -33,8 +34,15 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UsuarioResponse>> obtenerTodos() {
-        return ResponseEntity.ok(usuarioService.obtenerTodos());
+    public ResponseEntity<List<UsuarioResponse>> obtenerTodos(HttpServletRequest request) {
+        String baseUrl=request.getRequestURL().toString()
+                .replace(request.getRequestURI(),"");
+        return ResponseEntity.ok(usuarioService.obtenerTodos().stream().map(
+                u->{
+                    u.setFoto(baseUrl+u.getFoto());
+                    return u;
+                }
+        ).toList());
     }
 
     @PutMapping("/{id}")

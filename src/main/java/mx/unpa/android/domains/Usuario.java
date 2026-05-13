@@ -39,6 +39,9 @@ public class Usuario {
     @Column(nullable = false)
     private String password;
 
+    @Column(name = "foto")
+    private String foto;
+
     @Builder.Default
     @Column(nullable = false)
     private Boolean activo = true;

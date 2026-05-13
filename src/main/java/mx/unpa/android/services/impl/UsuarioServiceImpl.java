@@ -93,6 +93,7 @@ public class UsuarioServiceImpl implements UsuarioService {
                 .apellidoPaterno(usuario.getApellidoPaterno())
                 .apellidoMaterno(usuario.getApellidoMaterno())
                 .email(usuario.getEmail())
+                .foto(usuario.getFoto())
                 .telefono(usuario.getTelefono())
                 .activo(usuario.getActivo())
                 .fechaRegistro(usuario.getFechaRegistro())
